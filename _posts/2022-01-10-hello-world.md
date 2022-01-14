@@ -10,6 +10,9 @@ Several people at *Cappuccino* filled a lot of backup discs with unfinished
 experiments, keeping with then the idea that they still needed to improve them...
 
 <a href='./2022/01/10/hello-world.html'>continue to read</a>"
+
+authors: ["Yvan Sraka", "Adrien Zinger"]
+
 ---
 
 # 🌍 Hello, World!

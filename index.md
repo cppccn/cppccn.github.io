@@ -19,8 +19,13 @@ Cappuccino is a free organisation focused on technological watch
 ## Posts
 
 {% for post in site.posts %}
-* [{{ post.title }}]({{ post.url }})
+* [{{ post.title }}]({{ post.url }}) - <i>By:{% for author in post.authors %} {{author}};{% endfor %}</i>
 <br/>
 <br/>
 {{ post.description }}
+{% if post.reviewers %}
+
+<i>Reviewers: {% for reviewer in post.reviewers %} {{reviewer}};{% endfor %}</i>
+
+{% endif %}
 {% endfor %}
