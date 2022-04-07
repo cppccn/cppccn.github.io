@@ -15,18 +15,18 @@ reviewers: ["Yvan Sraka"]
 
 ## Make lazy things yourself
 
-Lazy static in rust can be something strange to immagine. In other languages,
+Lazy static in rust can be something strange to think. In other languages,
 you feel free to do a lot of things, dirty or not I don't judge you, with your
-memory. The reason why lazy static in rust is quite difficult to immagine, is
+memory. The reason lazy static in rust is quite difficult to imagine, is
 the checked lifetime and the coherency of variables.
 
-Don't mess with the rust compiler, there is some rules you have to respect:
-1. The type of a static should be known at compiletime
-2. A static variable should should have an initial value
+Don't mess with the rust compiler, there are some rules you have to respect:
+1. The type of static should be known at compiletime
+2. A static variable should have an initial value
 3. If immutable, the variable sould implement the `Sync` trait
 4. If mutable, the vaiable is usable in unsafe blocks only
 
-A basic example of a static global variable with an interio mutability usable
+A basic example of a static global variable with an interior mutability usable
 in a safe block:
 
 ```rust
@@ -37,21 +37,21 @@ The `Mutex` give to the global variable a mutability that couldn't exist in a
 safe case and the Arc give the `Sync` implementation that allow a
 multithreading context required by all immutable static variables.
 
-It doesn't looks like a good choice to make lazy things. Even if we use an
-Option that we init once and return always the Some value after that. We are
+It doesn't look like a good choice to make lazy things. Even if we use an
+Option that we init once and always return the Some value after that. We are
 always obligated to lock our static variable to read it. It sounds weird, isn't
 it?
 
 I said, I won't present again the `lazy_static` crate. Mr. Tolnay is too much
 known for that and that post would be anachronistic. ... I just want to know,
-why is that lib so powerfull?
+why is that lib so powerful?
 
 Going through the library, I found one thing, the heart of the lib. The
 [Once](https://doc.rust-lang.org/stable/std/sync/struct.Once.html)
 object. The Once is a way to ensure you'll pass once, and only once, if a
-function. It's a mega powerfull feature of rust. Even if the function you want
-to execute is touched by a weird randomization, undeterministic waits inside,
-with multiple calls in parrallel threading context, it will be executed _ONCE_.
+function. It's a mega powerful feature of rust. Even if the function you want
+to execute is touched by a weird randomization, nondeterministic waits inside,
+with multiple calls in parallel threading context, it will be executed _ONCE_.
 
 That's make sens, if you want something lazy_static, as an ip taken from a
 setting input, that cannot change, just do that:
@@ -72,7 +72,7 @@ pub fn get_ip(addr: String, port: String) -> &'static String {
 ```
 
 You probably noticed the usage of [MaybeUninit](https://doc.rust-lang.org/stable/std/mem/union.MaybeUninit.html),
-you can prefere the usage of an Option, or a personalized Enum. Whatever your
+you can prefer the usage of an Option, or a personalized Enum. Whatever your
 choice, you can do the initialization with the same method.
 
 You also noticed the usage of the unsafe block, it's because of the
@@ -136,7 +136,7 @@ fn main() {
 
 The weakness of using the deref traits, is the difficulty we have to initialize
 our lazy variable with a dynamic input. That can be crucial for codes with
-dependencies injections. But it's the price we pay to have a beautifull generic
+dependencies injections. But it's the price we pay to have a beautiful generic
 crate!
 
 
