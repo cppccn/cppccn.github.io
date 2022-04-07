@@ -5,7 +5,7 @@ description: "
 Lazy static in rust can be something strange to immagine. In other languages,
 you feel free to do a lot of things, dirty or not I don't judge you, with your
 memory...
-<a href='./2022/01/14/benchmark-async.html'>continue to read</a>"
+<a href='./2022/04/07/lazy-or-not-lazy.html'>continue to read</a>"
 
 authors: ["Adrien Zinger"]
 reviewers: ["Yvan Sraka"]
