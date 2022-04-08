@@ -23,7 +23,7 @@ Don't mess with the rust compiler, there are some rules you have to respect:
 1. The type of static should be known at compiletime
 2. A static variable should have an initial value
 3. If immutable, the variable sould implement the `Sync` trait
-4. If mutable, the vaiable is usable in unsafe blocks only
+4. If mutable, the variable is usable only in unsafe blocks
 
 A basic example of a static global variable with an interior mutability usable
 in a safe block:
