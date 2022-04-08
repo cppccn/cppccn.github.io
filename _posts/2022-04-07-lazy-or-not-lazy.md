@@ -41,7 +41,7 @@ Option that we init once and always return the Some value after that. We are
 always obligated to lock our static variable to read it. It sounds weird, isn't
 it?
 
-I said, I won't present again the `lazy_static` crate. Mr. Tolnay is too much
+I won't present again the `lazy_static` crate. Mr. Tolnay is too much
 known for that and that post would be anachronistic. ... I just want to know,
 why is that lib so powerful?
 
