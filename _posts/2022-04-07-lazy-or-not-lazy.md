@@ -25,7 +25,7 @@ Don't mess with the rust compiler, there are some rules you have to respect:
 3. If immutable, the variable sould implement the `Sync` trait
 4. If mutable, the variable is usable only in unsafe blocks
 
-A basic example of a static global variable with an interior mutability usable
+Start with the beginning, here is a basic example of a static global variable with an interior mutability usable
 in a safe block:
 
 ```rust
