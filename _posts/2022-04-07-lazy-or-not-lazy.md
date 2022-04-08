@@ -16,8 +16,7 @@ reviewers: ["Yvan Sraka"]
 ## Make lazy things yourself
 
 Lazy static in rust can be something strange to think. In other languages,
-you feel free to do a lot of things, dirty or not I don't judge you, with your
-memory. The reason lazy static in rust is quite difficult to imagine, is
+you feel free to do a lot of things with your program memory, dirty or not I don't judge you. The reason lazy static in rust is quite difficult to imagine, is
 the checked lifetime and the coherency of variables.
 
 Don't mess with the rust compiler, there are some rules you have to respect:
