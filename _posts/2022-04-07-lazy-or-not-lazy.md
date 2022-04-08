@@ -133,7 +133,7 @@ fn main() {
 }
 ```
 
-The weakness of using the deref traits, is the difficulty we have to initialize
+The weakness of using the deref traits is the difficulty to initialize
 our lazy variable with a dynamic input. That can be crucial for codes with
 dependencies injections. But it's the price we pay to have a beautiful generic
 crate!
