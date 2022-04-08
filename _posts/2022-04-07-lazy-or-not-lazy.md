@@ -53,7 +53,7 @@ to execute is touched by a weird randomization, nondeterministic waits inside,
 with multiple calls in parallel threading context, it will be executed _ONCE_.
 
 That's make sens, if you want something lazy_static, as an ip taken from a
-setting input, that cannot change, just do that:
+setting input, a variable that cannot change during the program life after being initialized, just do that:
 
 ```rust
 use std::{mem::MaybeUninit, sync::Once};
