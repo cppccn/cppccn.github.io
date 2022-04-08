@@ -42,7 +42,7 @@ always obligated to lock our static variable to read it. It sounds weird, isn't
 it?
 
 I won't present again the `lazy_static` crate. Mr. Tolnay is too much
-known for that and that post would be anachronistic. ... I just want to know,
+famous and that post would be anachronistic. ... I just want to know,
 why is that lib so powerful?
 
 Going through the library, I found one thing, the heart of the lib. The
