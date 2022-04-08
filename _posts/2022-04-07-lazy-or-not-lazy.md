@@ -47,7 +47,7 @@ why is that lib so powerful?
 
 Going through the library, I found one thing, the heart of the lib. The
 [Once](https://doc.rust-lang.org/stable/std/sync/struct.Once.html)
-object. The Once is a way to ensure you'll pass once, and only once, if a
+object. The Once is a way to ensure you'll pass once, and only once, in a
 function. It's a mega powerful feature of rust. Even if the function you want
 to execute is touched by a weird randomization, nondeterministic waits inside,
 with multiple calls in parallel threading context, it will be executed _ONCE_.
