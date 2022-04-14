@@ -2,8 +2,8 @@
 layout: default
 title:  "That is not about <i>lazy_static</i>"
 description: "
-Lazy static in rust can be something strange to immagine. In other languages,
-you feel free to do a lot of things, dirty or not I don't judge you, with your
+Lazy static in rust can be something strange to imagine. In other languages,
+you feel free to do numerous things, dirty or not I don't judge you, with your
 memory...
 <a href='./2022/04/07/lazy-or-not-lazy.html'>continue to read</a>"
 
@@ -11,19 +11,20 @@ authors: ["Adrien Zinger"]
 reviewers: ["Yvan Sraka"]
 ---
 
-# I'll not present the lazy_static crate
+# I won't present the lazy_static crate
 
 ## Make lazy things yourself
 
 Lazy static in rust can be something strange to think. In other languages,
-you feel free to do a lot of things with your program memory, dirty or not I don't judge you. The reason lazy static in rust is quite difficult to imagine, is
+you feel free to do numerous things with your program memory, dirty or not, I don't judge you.
+The reason why implementation of `lazy_static` in Rust is quite difficult to imagine, is
 the checked lifetime and the coherency of variables.
 
 Don't mess with the rust compiler, there are some rules you have to respect:
-1. The type of static should be known at compiletime
+1. The type of static should be known at compile time
 2. A static variable should have an initial value
-3. If immutable, the variable sould implement the `Sync` trait
-4. If mutable, the variable is usable only in unsafe blocks
+3. If immutable, the variable should implement the `Sync` trait
+4. If mutable, the variable is usable only in `unsafe` blocks
 
 Start with the beginning, here is a basic example of a static global variable with an interior mutability usable
 in a safe block:
@@ -37,22 +38,22 @@ safe case and the Arc give the `Sync` implementation that allow a
 multithreading context required by all immutable static variables.
 
 It doesn't look like a good choice to make lazy things. Even if we use an
-Option that we init once and always return the Some value after that. We are
+`Option` that we initialize once and always return the `Some` value after that. We are
 always obligated to lock our static variable to read it. It sounds weird, isn't
 it?
 
 I won't present again the `lazy_static` crate. Mr. Tolnay is too much
-famous and that post would be anachronistic. ... I just want to know,
+famous, and that post would be anachronistic. ... I just want to know,
 why is that lib so powerful?
 
 Going through the library, I found one thing, the heart of the lib. The
 [Once](https://doc.rust-lang.org/stable/std/sync/struct.Once.html)
-object. The Once is a way to ensure you'll pass one time, and only one, in a
+object. The `Once` is a way to ensure you'll pass once, and only once, in a
 function. It's a mega powerful feature of rust. Even if the function you want
 to execute is touched by a weird randomization, nondeterministic waits inside,
 with multiple calls, in parallel threading context, it will be executed _ONCE_.
 
-That's make sens, if you want something lazy_static, as an ip taken from a
+That's make sens, if you want something lazy_static, as an IP taken from a
 setting input, a variable that cannot change during the program life after being initialized, just do that:
 
 ```rust
@@ -70,24 +71,24 @@ pub fn get_ip(addr: String, port: String) -> &'static String {
 }
 ```
 
-You probably noticed the usage of [MaybeUninit](https://doc.rust-lang.org/stable/std/mem/union.MaybeUninit.html),
-you can prefer the usage of an Option, or a personalized Enum. Whatever your
+You probably noticed the usage of [`MaybeUninit`](https://doc.rust-lang.org/stable/std/mem/union.MaybeUninit.html),
+you can prefer the usage of an Option, or a personalized `Enum`. Whatever your
 choice, you can do the initialization with the same method.
 
 You also noticed the usage of the unsafe block, it's because of the
-_static mut_, the call_once is here to make the get_ip safe to call in any
+`static mut`, the `call_once` is here to make the `get_ip` safe to call in any
 context.
 
-Now you know, and so do I, how to make lazy_static things. It wasn't very hard.
+Now you know, and so do I, how to make `lazy_static` things. It wasn't very hard.
 
 ## Furthermore
 
-If you want to know how lazy_static can do the magic thing with the
-deref star, I'll show you a little example of how to reproduce it, without the
+If you want to know how `lazy_static can` do the magic thing with the
+ `*` operator, I'll show you a little example of how to reproduce it, without the
 crate.
 
 Let's say that we have a function that get our IP from a config file or an env
-variable: `find_ip()`. That function would be exactly what you would like to
+variable: `find_ip()`. That function would be precisely what you would like to
 give in a lazy_static.
 
 ```rust
@@ -101,7 +102,7 @@ fn main() {
 ```
 
 To get the same result, we just miss a little object, we want to create a
-second static structure, that is empty and that implement the deref trait:
+second static structure, that is empty and that implement the `Deref` trait:
 
 ```rust
 use std::{mem::MaybeUninit, sync::Once};
@@ -133,10 +134,10 @@ fn main() {
 }
 ```
 
-The weakness of using the deref traits is the difficulty to initialize
+The weakness of using the `Deref` traits is the difficulty to initialize
 our lazy variable with a dynamic input. That can be crucial for codes with
 dependencies injections. But it's the price we pay to have a beautiful generic
 crate!
 
 
-Thank's for reading, thank you for your time.
+Thanks for reading, thank you for your time.
