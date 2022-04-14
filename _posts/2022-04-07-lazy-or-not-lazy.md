@@ -83,7 +83,7 @@ Now you know, and so do I, how to make lazy_static things. It wasn't very hard.
 ## Furthermore
 
 If you want to know how lazy_static can do the magic thing with the
-deref star, I'll show you a little example of how to reproduce if without the
+deref star, I'll show you a little example of how to reproduce it, without the
 crate.
 
 Let's say that we have a function that get our IP from a config file or an env
