@@ -50,7 +50,7 @@ Going through the library, I found one thing, the heart of the lib. The
 object. The Once is a way to ensure you'll pass once, and only once, in a
 function. It's a mega powerful feature of rust. Even if the function you want
 to execute is touched by a weird randomization, nondeterministic waits inside,
-with multiple calls in parallel threading context, it will be executed _ONCE_.
+with multiple calls, in parallel threading context, it will be executed _ONCE_.
 
 That's make sens, if you want something lazy_static, as an ip taken from a
 setting input, a variable that cannot change during the program life after being initialized, just do that:
